@@ -1,0 +1,36 @@
+{% extends 'AdminLayout.html' %}
+{% load static %}
+
+{% block head %}
+<title>Resolved Complaints</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-image:url('{% static 'Images/ErrorBackground.jpg' %}');background-size:cover;text-align:center;height:800px;">
+<br/><br/>
+<div class="row" style="font-size:30px;">
+<div class="col-md-4">
+<div><a href="/AdminLogin" style="color:black;">Unresolved Complaints</a></div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-4">
+<div style="background-color:grey;"><a href="/Solved" style="color:black;">Resolved Complaints</a></div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2">
+<div><a href="/AdminLogout" style="color:black;">Logout</a></div>
+</div>
+</div>
+<br/><br/><hr/>
+{% for i in data %}
+<div class="row" style="font-size:20px;">
+<div class="col-md-2"><span style="color:red;">Feedback No : </span>{{i.id}}</div>
+<div class="col-md-2"><span style="color:red;">Name : </span>{{i.name}}</div>
+<div class="col-md-3"><span style="color:red;">Email : </span>{{i.email}}</div>
+<div class="col-md-5">{{i.feedback}}</div>
+<div class="col-md-12"><span style="color:red;">Reply : </span>{{i.reply}}</div>
+</div>
+<hr/>
+{% endfor %}
+</div>
+{% endblock %}

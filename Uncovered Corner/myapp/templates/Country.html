@@ -1,0 +1,27 @@
+{% extends 'Layout.html' %}
+{% load static %}
+
+{% block head %}
+<title>Country</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-image:url({% static 'Images/ErrorBackground.jpg' %});background-size:cover;">
+<br/><br/>
+<div class="row">
+{% for i in country %}
+<div class="col-md-3">
+<div class="card" style="width: 18rem;border:2px solid red;text-align:center;">
+<img class="card-img-top" src="/static/Country/{{i.name}}/{{i.cardimage}}" height="200px">
+<div class="card-body">
+<h2 class="card-title">{{i.name}}</h2>
+<p class="card-text">{{i.about}}</p>
+<a href="/Country/{{i.id}}" class="btn btn-primary">Explore</a>
+</div>
+</div>
+<br/><br/>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
