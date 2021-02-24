@@ -1,0 +1,61 @@
+{% extends 'AdminLayout.html' %}
+{% load static %}
+
+{% block head %}
+<title>Unresolved Complaints</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-image:url('{% static 'Images/ErrorBackground.jpg' %}');background-size:cover;text-align:center;height:800px;">
+<br/><br/>
+<div class="row" style="font-size:30px;">
+<div class="col-md-4">
+<div style="background-color:grey;"><a href="/AdminLogin" style="color:black;">Unresolved Complaints</a></div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-4">
+<div><a href="/Solved" style="color:black;">Resolved Complaints</a></div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2">
+<div><a href="/AdminLogout" style="color:black;">Logout</a></div>
+</div>
+</div>
+<br/><br/><hr/>
+{% for i in data %}
+<div class="row" style="font-size:20px;">
+<div class="col-md-2"><span style="color:red;">Feedback No : </span>{{i.id}}</div>
+<div class="col-md-2"><span style="color:red;">Name : </span>{{i.name}}</div>
+<div class="col-md-3">
+<span style="color:red;">Email : </span><button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter{{i.id}}" style="color:black;font-size:20px;text-decoration:none;">{{i.email}}</button>
+<div class="modal fade" id="exampleModalCenter{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLongTitle"><span style="color:red;">Reply to </span>{{i.email}}</h5>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<form method="post" action="/SendReply/{{i.id}}/">
+{% csrf_token %}
+<div class="form-group">
+<textarea class="form-control" rows="4" name="reply" placeholder="Write your reply to {{i.name}}"></textarea>
+</div>
+<button type="submit" class="btn btn-primary">Send Reply</button>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-5">{{i.feedback}}</div>
+</div>
+<hr/>
+{% endfor %}
+</div>
+{% endblock %}

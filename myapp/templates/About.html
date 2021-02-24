@@ -1,0 +1,52 @@
+{% extends 'Layout.html' %}
+{% load static %}
+
+{% block head %}
+<title>About</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-image:url('{% static 'Images/ErrorBackground.jpg' %}');background-size:cover;">
+<br/><br/>
+<div class="row">
+<div class="col-md-2"></div>
+<div class="col-md-8" style="text-align:center;background-image:url({% static 'Images/About.jpg' %});padding:20px;">
+<div style="background-image:url('{% static 'Images/ErrorBackground.jpg' %}');padding:20px;background-size:cover;">
+<br/>
+<h1><span style="border-bottom:2px solid red;border-top:2px solid red;">About Uncovered Corner</span></h1>
+<br/>
+<span>We are an organisation to open up the covers from the places which are not been covered by you. This is a platform that is truly built as per your requirement. It let's you to find a perfect destination to complete a vacation with your loved ones.</span>
+<br/><br/>
+<h2>For more details, Contact us</h2><br/>
+<span style="font-size:20px;"><i class="fa fa-envelope"></i> 013pavanjain@gmail.com</span><br/>
+<span style="font-size:20px;"><i class="fa fa-phone"></i> +91 8349312393</span><br/>
+</div>
+</div>
+<div class="col-md-2"></div>
+</div>
+<br/><br/>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4" style="text-align:center;background-image:url('{% static 'Images/About.jpg' %}');background-size:cover;padding:20px;">
+<div style="background-image:url('{% static 'Images/ErrorBackground.jpg' %}');background-size:cover;padding:20px;">
+<h2>Register your complaint or Give us our feedback</h2><br/>
+<form method="post" action="/Feedback/">
+{% csrf_token %}
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter your name" name="name" required>
+</div>
+<div class="form-group">
+<input type="email" class="form-control" placeholder="Enter your Email" name="email" required>
+</div>
+<div class="form-group">
+<textarea class="form-control" placeholder="Content" name="content" required></textarea>
+</div>
+<button type="submit" class="btn btn-success" style="background-color:black;border:2px solid red;color:red;">Submit</button>
+</form>
+</div>
+</div>
+<div class="col-md-4"></div>
+</div>
+<br/><br/>
+</div>
+{% endblock %}

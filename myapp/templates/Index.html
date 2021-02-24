@@ -1,0 +1,104 @@
+{% extends 'Layout.html' %}
+{% load static %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid" style="background-image:url('{% static 'Images/Cover.jpg' %}');background-size:cover;">
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<form method="post" action="/Search/" style="text-align:center;">
+<div class="form-group">
+{% csrf_token %}
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+<span class="input-group-text" id="basic-addon1"><i class="fa fa-search" style="color:red;font-size:25px;"></i></span>
+</div>
+<input type="text" class="form-control" style="background-color:black;color:red;font-size:25px;" placeholder="Search for Country" name="searchtext" required>
+</div>
+</div>
+<button type="submit" class="btn btn-success" style="background-color:black;border:2px solid red;color:red;font-size:25px;">Search</button>
+</form>
+</div>
+<div class="col-md-3"></div>
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+<div class="container-fluid" style="background-image:url({% static 'Images/ErrorBackground.jpg' %});background-size:cover;">
+<br/><br/>
+<div class="row">
+<div class="col-md-1"></div>
+{% for i in country %}
+<div class="col-md-3">
+<div class="card" style="width: 18rem;border:2px solid red;text-align:center;">
+<img class="card-img-top" src="/static/Country/{{i.name}}/{{i.cardimage}}" height="200px">
+<div class="card-body">
+<h2 class="card-title">{{i.name}}</h2>
+<p class="card-text">{{i.about}}</p>
+<a href="/Country/{{i.id}}" class="btn btn-primary">Explore</a>
+</div>
+</div>
+<br/><br/>
+</div>
+{% endfor %}
+<div class="col-md-1" style="text-align:center;">
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<a href="Country" style="color:black;"><i class="fa fa-plus-circle" style="font-size:60px;"></i></a>
+<h2 style="text-align:center;">More</h2>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+<div class="col-md-1"></div>
+</div>
+</div>
+<div class="container-fluid" style="background-image:url('{% static 'Images/SeasonBackground.jpg' %}');background-size:cover;">
+<br/><br/>
+<div class="row">
+{% for i in season %}
+<div class="col-md-3" style="text-align:center;">
+<h2 style="color:red;">{{i.name}}</h2><br/>
+<img src="../static/Season/{{i.image}}" width="95%"  class="img-fluid" style="border:1px solid blue;box-shadow:2px 2px 2px 3px black;"/><br/><br/>
+<div style="font-size:20px;padding:10px;">{{i.about}}</div>
+<br/><br/>
+</div>
+{% endfor %}
+</div>
+</div>
+<div class="container-fluid" style="background-image:url('{% static 'Images/WondersBackground.jpg' %}');background-size:cover;">
+<br/><br/>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10" style="padding:20px;border:2px solid black;text-align:center;font-size:30px;">Seven Wonders of the World</div>
+<div class="col-md-1"></div>
+</div>
+<br/><br/>
+<div class="row">
+{% for i in wonder %}
+<div class="col-md-1"></div>
+<div class="col-md-4">
+<img src="../static/Wonder/{{i.image}}" height="200px" width="100%" style="border:1px solid black;box-shadow:2px 2px 2px 4px black;">
+<br/><br/>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-5">
+<p>
+<div style="text-align:center;"><a class="btn btn-link" data-toggle="collapse" href="#collapseExample{{i.id}}" role="button" aria-expanded="false" aria-controls="collapseExample" style="font-size:40px;">{{i.id}}. {{i.name}}</a></div><br/>
+<div style="text-align:center;"><h1>{{i.country}}</h1></div>
+</p>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-1"></div>
+<div class="col-md-10">
+<div class="collapse" id="collapseExample{{i.id}}">
+<div class="card card-body" style="color:red;background-color:#E9EB7A;">{{i.about}}</div>
+</div>
+<br/><br/>
+</div>
+<div class="col-md-1"></div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
